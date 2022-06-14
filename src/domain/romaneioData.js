@@ -9,7 +9,7 @@ exports.getRomaneio = async(codigo) => {
 
       const query = new QueryFile(fullPath, {minify: true});
       
-      return database.any(query, codigo);
+      return database.one(query, codigo);
     } else {
     	let fullPath = joinPath(__dirname, 'query/buscaRomaneios.sql');
 

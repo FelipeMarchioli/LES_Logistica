@@ -26,3 +26,32 @@ exports.getItensNotaFiscal = async(numero) => {
     return err;
   }
 };
+
+exports.getItem = async(conferencia) => {
+  try {
+    if (conferencia) {
+      let fullPath = joinPath(__dirname, 'query/buscaItem.sql');
+
+      const query = new QueryFile(fullPath, {minify: true});
+      
+      return database.one(query, [conferencia.idItemNotaFiscal, conferencia.idNotaFiscal]);
+    } else {
+    	let fullPath = joinPath(__dirname, 'query/buscaItem.sql');
+
+      const query = new QueryFile(fullPath, {minify: true});
+      
+      return database.any(query);
+    }
+  } catch(err) {
+    return err;
+  }
+};
+
+exports.updateItem = async (conferencia) => {
+  try {
+    console.log(conferencia)
+    return await database.one('update public.itemnotafiscal set "iditemnotafiscal" = $1, "codproduto" = $2, "quantidade" = $3, "numeroitem" = $4, "sequencia" = $5, "quantidadecarregada" = $6, "lote" = $7, "idnotafiscal" = $8 where "iditemnotafiscal" = $1 and "idnotafiscal" = $8 returning *', [ conferencia.iditemnotafiscal, conferencia.codproduto, conferencia.quantidade, conferencia.numeroitem, conferencia.sequencia, conferencia.quantidadecarregada, conferencia.lote, conferencia.idnotafiscal ]);
+  } catch(err) {
+    return err;
+  }
+};

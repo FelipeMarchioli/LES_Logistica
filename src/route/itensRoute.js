@@ -11,4 +11,8 @@ ItensRoute.get('/itensNotaFiscal', async (req, res) => {
   await itensController.buscarItensNotaFiscal(req, res);
 });
 
+ItensRoute.put('/enviaRomaneio', async (req, res) => {
+  await itensController.enviarRomaneio(req, res);
+});
+
 module.exports = ItensRoute;
