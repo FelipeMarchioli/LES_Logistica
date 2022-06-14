@@ -7,6 +7,6 @@ app.use('/health-check', require('./route/healthRoute'));
 app.use('/api/v1/romaneio', require('./route/romaneioRoute'));
 app.use('/api/v1/notasFiscais', require('./route/notaFiscalRoute'));
 app.use('/api/v1/checklist', require('./route/checklistRoute'));
-app.use('/api/v1/itensRomaneio', require('./route/itensRoute'));
+app.use('/api/v1', require('./route/itensRoute'));
 
 module.exports = app;

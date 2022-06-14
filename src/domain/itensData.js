@@ -14,3 +14,15 @@ exports.getItens = async(codigo) => {
     return err;
   }
 };
+
+exports.getItensNotaFiscal = async(numero) => {
+  try {
+    let fullPath = joinPath(__dirname, 'query/buscaItensNota.sql');
+
+    const query = new QueryFile(fullPath, {minify: true});
+    
+    return database.any(query, numero)
+  } catch(err) {
+    return err;
+  }
+};

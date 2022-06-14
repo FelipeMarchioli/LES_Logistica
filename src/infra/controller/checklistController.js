@@ -10,11 +10,15 @@ exports.buscarChecklist = async (req, res) => {
   return res.status(200).json({ message: 'Success', value: checklistData.value})
 };
 
-exports.criarChecklist = async (_, res) => {
-  const response = await checklistService.saveChecklist();
-  if (response) {
+exports.criarChecklist = async (req, res) => {
+  const checklist = req.body
+  if (!checklist.idChecklist || !checklist.observacoes || !checklist.codRomaneio) {
+    return res.status(422).json({ message: 'Error', value: 'Dados incorretos ou falta de dados enviado na requisição'})
+  }
+  const response = await checklistService.saveChecklist(checklist);
+  if (response.name === 'error') {
     return res.status(400).json({ message: 'Error', value: 'Erro ao criar checklist'})
   }
 
-  return res.status(201).json({ message: 'Success', value: 'Checklist criado com sucesso'})
+  return res.status(201).json({ message: 'Success', value: response})
 };
