@@ -16,9 +16,12 @@ exports.criarRomaneio = async (req, res) => {
   if (!romaneio.dataEmissao || !romaneio.dataCarregamento || !romaneio.idVeiculo) {
     return res.status(422).json({ message: 'Error', value: 'Dados incorretos ou falta de dados enviado na requisição'})
   }
+  if (romaneio.dataEmissao > romaneio.dataCarregamento) {
+    return res.status(500).json({ message: 'Error', value: 'Data de carregamento deve ser maior do que a data de emissão'})
+  }
   const response = await romaneioService.saveRomaneio(romaneio);
   if (response.name === 'error') {
-    return res.status(400).json({ message: 'Error', value: 'Erro ao criar romaneio'})
+    return res.status(400).json({ message: 'Error', value: response})
   }
 
   return res.status(201).json({ message: 'Success', value: response})
