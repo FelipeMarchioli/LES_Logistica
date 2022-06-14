@@ -1,7 +1,7 @@
 const itensData = require('../../domain/itensData');
 
 exports.buscarItens = async (req, res) => {
-  const codRomaneio = req.query.codRomaneio;
+  const codRomaneio = req.query.codromaneio;
   const itemData = await itensData.getItens(codRomaneio);
   if (!itemData) {
     return res.status(400).json({ message: 'Error', value: 'Não foi encontrado nenhum item com esse código'})
@@ -20,7 +20,7 @@ exports.buscarItensNotaFiscal = async (req, res) => {
 
 exports.enviarRomaneio = async (req, res) => {
   const conferencia = req.body;
-  if (!conferencia.idItemNotaFiscal || !conferencia.quantidade || !conferencia.lote || !conferencia.idNotaFiscal) {
+  if (!conferencia.iditemnotafiscal || !conferencia.quantidade || !conferencia.lote || !conferencia.idnotafiscal) {
     return res.status(422).json({ message: 'Error', value: 'Dados incorretos ou falta de dados enviado na requisição'})
   }
   

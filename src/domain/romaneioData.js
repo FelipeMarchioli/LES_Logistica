@@ -24,7 +24,7 @@ exports.getRomaneio = async(codigo) => {
 
 exports.saveRomaneio = async (romaneio) => {
   try {
-    return await database.one('insert into public.romaneio ("codromaneio", "dataemissao", "datacarregar", "idveiculo") values ($1, $2, $3, $4) returning *', [ romaneio.codRomaneio, romaneio.dataEmissao, romaneio.dataCarregamento, romaneio.idVeiculo ]);
+    return await database.one('insert into public.romaneio ("codromaneio", "dataemissao", "datacarregar", "idveiculo") values ($1, $2, $3, $4) returning *', [ romaneio.codromaneio, romaneio.dataemissao, romaneio.datacarregamento, romaneio.idveiculo ]);
   } catch(err) {
     return err;
   }

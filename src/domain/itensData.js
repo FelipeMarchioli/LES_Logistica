@@ -34,7 +34,7 @@ exports.getItem = async(conferencia) => {
 
       const query = new QueryFile(fullPath, {minify: true});
       
-      return database.one(query, [conferencia.idItemNotaFiscal, conferencia.idNotaFiscal]);
+      return database.one(query, [conferencia.iditemnotafiscal, conferencia.idnotafiscal]);
     } else {
     	let fullPath = joinPath(__dirname, 'query/buscaItem.sql');
 

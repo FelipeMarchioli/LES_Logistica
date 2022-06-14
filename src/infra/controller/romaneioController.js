@@ -13,10 +13,10 @@ exports.buscarRomaneio = async (req, res) => {
 
 exports.criarRomaneio = async (req, res) => {
   const romaneio = req.body
-  if (!romaneio.dataEmissao || !romaneio.dataCarregamento || !romaneio.idVeiculo) {
+  if (!romaneio.dataemissao || !romaneio.datacarregamento || !romaneio.idveiculo) {
     return res.status(422).json({ message: 'Error', value: 'Dados incorretos ou falta de dados enviado na requisição'})
   }
-  if (romaneio.dataEmissao > romaneio.dataCarregamento) {
+  if (romaneio.dataemissao > romaneio.datacarregamento) {
     return res.status(500).json({ message: 'Error', value: 'Data de carregamento deve ser maior do que a data de emissão'})
   }
   const response = await romaneioService.saveRomaneio(romaneio);
