@@ -2,14 +2,13 @@ const {QueryFile} = require('pg-promise');
 const {join: joinPath} = require('path');
 const database = require('../infra/data/database');
 
-// InnerJoin com romaneio
-exports.getItens = async(codigo) => {
+exports.getNotasFiscais = async() => {
   try {
-    let fullPath = joinPath(__dirname, 'query/buscaItens.sql');
+    let fullPath = joinPath(__dirname, 'query/buscaNotas.sql');
 
     const query = new QueryFile(fullPath, {minify: true});
     
-    return database.any(query, codigo)
+    return database.any(query)
   } catch(err) {
     return err;
   }
