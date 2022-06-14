@@ -11,11 +11,11 @@ exports.buscarItens = async (req, res) => {
 
 exports.buscarItensNotaFiscal = async (req, res) => {
   const numero = req.query.numero;
-  const itensData = await itensData.getItensNotaFiscal(numero);
-  if (!itensData) {
+  const itemData = await itensData.getItensNotaFiscal(numero);
+  if (!itemData) {
     return res.status(400).json({ message: 'Error', value: 'Não foi encontrado nenhum item com esse código'})
   }
-  return res.status(200).json({ message: 'Success', value: itensData})
+  return res.status(200).json({ message: 'Success', value: itemData})
 };
 
 exports.enviarRomaneio = async (req, res) => {
